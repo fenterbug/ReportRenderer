@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using Sandbox;
 
-namespace Reports.Renderers
+namespace Reports.Sample
 {
     public class ConsoleReportRenderer : IReportRenderer
     {
@@ -16,7 +16,7 @@ namespace Reports.Renderers
                 int maxRow = 0;
                 foreach (var toPrint in items)
                 {
-                    Console.SetCursorPosition(toPrint.DisplayFormat.Column, currentPosition.Top + toPrint.DisplayFormat.Row);
+                    SetCursorPosition(toPrint.DisplayFormat.Column, currentPosition.Top + toPrint.DisplayFormat.Row);
                     if (toPrint.DisplayFormat.Row > maxRow) { maxRow = toPrint.DisplayFormat.Row; }
 
                     if (toPrint.DisplayFormat.Bold)
@@ -30,7 +30,7 @@ namespace Reports.Renderers
 
                     Console.Write(toPrint.GetText(data));
                 }
-                Console.SetCursorPosition(0, currentPosition.Top + maxRow + 1);
+                SetCursorPosition(0, currentPosition.Top + maxRow + 1);
 
                 Console.ForegroundColor = currentForeColor;
                 Console.BackgroundColor = currentBackColor;
@@ -45,7 +45,7 @@ namespace Reports.Renderers
                 int maxRow = 0;
                 foreach (var toPrint in items)
                 {
-                    Console.SetCursorPosition(toPrint.DisplayFormat.Column, currentPosition.Top + toPrint.DisplayFormat.Row);
+                    SetCursorPosition(toPrint.DisplayFormat.Column, currentPosition.Top + toPrint.DisplayFormat.Row);
                     if (toPrint.DisplayFormat.Row > maxRow) { maxRow = toPrint.DisplayFormat.Row; }
 
                     if (toPrint.DisplayFormat.Bold)
@@ -59,8 +59,13 @@ namespace Reports.Renderers
 
                     Console.Write(toPrint.GetText(data));
                 }
-                Console.SetCursorPosition(0, currentPosition.Top + maxRow + 1);
+                SetCursorPosition(0, currentPosition.Top + maxRow + 1);
             }
         }
+
+		private void SetCursorPosition(int x, int y)
+		{
+			Console.SetCursorPosition(x, Math.Min(Console.BufferHeight - 1, y));
+		}
     }
 }
