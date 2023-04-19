@@ -1,6 +1,4 @@
-﻿using Reports.Renderers;
-
-using Sandbox;
+﻿using Sandbox;
 
 using System.Data;
 
@@ -12,13 +10,13 @@ namespace Reports.Sample
 		{
 			PlayWithReports();
 		}
+
 		private static void PlayWithReports()
 		{
 			DataTable dt = RetrieveData();
 			IReportRenderer reportRenderer = new ConsoleReportRenderer();
 
 			var report = new Report(dt, reportRenderer);
-
 
 			#region [ If we do nothing... ]
 
@@ -87,7 +85,6 @@ namespace Reports.Sample
 			#endregion [ With Headers ]
 
 			#endregion [ If we do nothing... ]
-
 
 			report.Render();
 		}

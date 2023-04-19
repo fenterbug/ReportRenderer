@@ -8,7 +8,8 @@
 		public bool Bold = false;
 		//public font Font = "Ariel";
 
-		public DisplayFormat() { }
+		public DisplayFormat()
+		{ }
 
 		public DisplayFormat(int row, int column, int fontSize, bool bold)
 		{
